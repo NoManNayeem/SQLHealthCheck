@@ -105,38 +105,34 @@ function updatePerformanceChartData(chart, newData) {
 
 
 
-const toggleInfoBtn = document.getElementById('toggleInfoBtn');
-    const toggleIcon = document.getElementById('toggleIcon');
-    const serverInfoContent = document.getElementById('serverInfoContent');
+function toggleConnection() {
+  var connectionContent = document.getElementById("connectionContent");
+  connectionContent.classList.toggle("hidden");
+  var toggleConnectionIcon = document.getElementById("toggleConnectionIcon");
+  toggleConnectionIcon.classList.toggle("fa-chevron-up");
+  toggleConnectionIcon.classList.toggle("fa-chevron-down");
+}
 
-    toggleInfoBtn.addEventListener('click', () => {
-        if (serverInfoContent.style.display === 'none') {
-            serverInfoContent.style.display = 'grid';
-            toggleIcon.classList.remove('fa-chevron-down');
-            toggleIcon.classList.add('fa-chevron-up');
-        } else {
-            serverInfoContent.style.display = 'none';
-            toggleIcon.classList.remove('fa-chevron-up');
-            toggleIcon.classList.add('fa-chevron-down');
-        }
-    });
-
-
+function toggleServerInfo() {
+  var serverInfoContent = document.getElementById("serverInfoContent");
+  serverInfoContent.classList.toggle("hidden");
+  var toggleIcon = document.getElementById("toggleIcon");
+  toggleIcon.classList.toggle("fa-chevron-up");
+  toggleIcon.classList.toggle("fa-chevron-down");
+}
 
 
+function toggleVisibility(contentId, iconId) {
+  var content = document.getElementById(contentId);
+  var icon = document.getElementById(iconId);
 
-    const toggleConnectionBtn = document.getElementById('toggleConnectionBtn');
-    const toggleConnectionIcon = document.getElementById('toggleConnectionIcon');
-    const connectionContent = document.getElementById('connectionContent');
-
-    toggleConnectionBtn.addEventListener('click', () => {
-        if (connectionContent.style.display === 'none') {
-            connectionContent.style.display = 'grid';
-            toggleConnectionIcon.classList.remove('fa-chevron-down');
-            toggleConnectionIcon.classList.add('fa-chevron-up');
-        } else {
-            connectionContent.style.display = 'none';
-            toggleConnectionIcon.classList.remove('fa-chevron-up');
-            toggleConnectionIcon.classList.add('fa-chevron-down');
-        }
-    });
+  if (content.style.display === "none" || content.style.display === "") {
+      content.style.display = "block";
+      icon.classList.remove('fa-chevron-down');
+      icon.classList.add('fa-chevron-up');
+  } else {
+      content.style.display = "none";
+      icon.classList.remove('fa-chevron-up');
+      icon.classList.add('fa-chevron-down');
+  }
+}
