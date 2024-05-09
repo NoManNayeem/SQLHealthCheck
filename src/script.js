@@ -100,3 +100,43 @@ function updatePerformanceChartData(chart, newData) {
   });
   chart.update();
 }
+
+
+
+
+
+const toggleInfoBtn = document.getElementById('toggleInfoBtn');
+    const toggleIcon = document.getElementById('toggleIcon');
+    const serverInfoContent = document.getElementById('serverInfoContent');
+
+    toggleInfoBtn.addEventListener('click', () => {
+        if (serverInfoContent.style.display === 'none') {
+            serverInfoContent.style.display = 'grid';
+            toggleIcon.classList.remove('fa-chevron-down');
+            toggleIcon.classList.add('fa-chevron-up');
+        } else {
+            serverInfoContent.style.display = 'none';
+            toggleIcon.classList.remove('fa-chevron-up');
+            toggleIcon.classList.add('fa-chevron-down');
+        }
+    });
+
+
+
+
+
+    const toggleConnectionBtn = document.getElementById('toggleConnectionBtn');
+    const toggleConnectionIcon = document.getElementById('toggleConnectionIcon');
+    const connectionContent = document.getElementById('connectionContent');
+
+    toggleConnectionBtn.addEventListener('click', () => {
+        if (connectionContent.style.display === 'none') {
+            connectionContent.style.display = 'grid';
+            toggleConnectionIcon.classList.remove('fa-chevron-down');
+            toggleConnectionIcon.classList.add('fa-chevron-up');
+        } else {
+            connectionContent.style.display = 'none';
+            toggleConnectionIcon.classList.remove('fa-chevron-up');
+            toggleConnectionIcon.classList.add('fa-chevron-down');
+        }
+    });

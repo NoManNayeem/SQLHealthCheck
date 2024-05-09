@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,19 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <title>SQL Server Monitoring Dashboard</title>
+    <style>
+        #refreshButton {
+            position: fixed;
+            bottom: 20px;
+            /* Adjust as needed */
+            right: 20px;
+            /* Adjust as needed */
+            z-index: 9999;
+            /* Ensure it appears above other content */
+        }
+    </style>
 </head>
+
 <body class="bg-gray-100">
     <!-- Navbar -->
     <nav class="bg-gray-800 text-white p-4">
@@ -15,11 +28,117 @@
             <h1 class="text-lg md:text-xl font-bold">
                 <i class="fas fa-database"></i> SQL Server Dashboard
             </h1>
-            <button type="button" id="refreshButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="refreshData();">
+            <button type="button" id="refreshButton"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="refreshData();">
                 <i class="fas fa-sync"></i> Refresh
             </button>
         </div>
     </nav>
+
+    <!-- Server Connection Section -->
+    <div id="serverConnectionSection" class="col-span-1 md:col-span-3 bg-white p-6 shadow rounded mt-8">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="font-bold text-2xl">Connect to SQL Server</h2>
+            <button id="toggleConnectionBtn" class="text-blue-500 hover:text-blue-700 focus:outline-none">
+                <i id="toggleConnectionIcon" class="fas fa-chevron-up"></i>
+            </button>
+        </div>
+        <div id="connectionContent" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Local Server Connection -->
+            <div class="bg-gray-100 p-6 rounded-lg border border-gray-200">
+                <h3 class="font-semibold text-lg mb-4">Local Server</h3>
+                <form>
+                    <div class="mb-4">
+                        <label for="localServer" class="block text-gray-700 font-semibold mb-2">Server Name</label>
+                        <input type="text" id="localServer" name="localServer" placeholder="localhost"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    </div>
+                    <button type="submit"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded">
+                        <i class="fas fa-server mr-2"></i> Connect
+                    </button>
+                </form>
+            </div>
+            <!-- Remote Server Connection -->
+            <div class="bg-gray-100 p-6 rounded-lg border border-gray-200">
+                <h3 class="font-semibold text-lg mb-4">Remote Server</h3>
+                <form>
+                    <div class="mb-4">
+                        <label for="remoteServer" class="block text-gray-700 font-semibold mb-2">Server Address</label>
+                        <input type="text" id="remoteServer" name="remoteServer" placeholder="Enter server address"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="username" class="block text-gray-700 font-semibold mb-2">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Enter username"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="block text-gray-700 font-semibold mb-2">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter password"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    </div>
+                    <button type="submit"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded">
+                        <i class="fas fa-server mr-2"></i> Connect
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- SQL Server Info Section -->
+    <div class="col-span-1 md:col-span-3 bg-white p-6 shadow rounded mt-8">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="font-bold text-2xl">SQL Server Information</h2>
+            <button id="toggleInfoBtn" class="text-blue-500 hover:text-blue-700 focus:outline-none">
+                <i id="toggleIcon" class="fas fa-chevron-up"></i>
+            </button>
+        </div>
+        <div id="serverInfoContent" class="grid grid-cols-2 gap-6">
+            <!-- SQL Server Version -->
+            <div>
+                <h3 class="font-semibold text-lg mb-2">Version</h3>
+                <p>Microsoft SQL Server 2019</p>
+            </div>
+            <!-- Database Count -->
+            <div>
+                <h3 class="font-semibold text-lg mb-2">Databases</h3>
+                <p>10</p>
+            </div>
+            <!-- Total Tables -->
+            <div>
+                <h3 class="font-semibold text-lg mb-2">Tables</h3>
+                <p>150</p>
+            </div>
+            <!-- Total Stored Procedures -->
+            <div>
+                <h3 class="font-semibold text-lg mb-2">Stored Procedures</h3>
+                <p>80</p>
+            </div>
+            <!-- Total Views -->
+            <div>
+                <h3 class="font-semibold text-lg mb-2">Views</h3>
+                <p>30</p>
+            </div>
+            <!-- Last Backup Date -->
+            <div>
+                <h3 class="font-semibold text-lg mb-2">Last Backup</h3>
+                <p>May 5, 2024</p>
+            </div>
+            <!-- Data and Log File Size -->
+            <div>
+                <h3 class="font-semibold text-lg mb-2">Data & Log Size</h3>
+                <p>Data: 500 GB<br>Log: 100 GB</p>
+            </div>
+            <!-- Active Connections -->
+            <div>
+                <h3 class="font-semibold text-lg mb-2">Active Connections</h3>
+                <p>50</p>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Main Content -->
     <div class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -111,4 +230,5 @@
     </footer>
 </body>
 <script src="./script.js"></script>
+
 </html>
