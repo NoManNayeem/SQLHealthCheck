@@ -2,6 +2,16 @@
 
 SQLHealthCheck is a comprehensive monitoring dashboard designed to provide real-time insights into the health and performance of Microsoft SQL Server environments. It enables database administrators and developers to track critical metrics such as CPU usage, memory utilization, disk space, and active queries, facilitating efficient management and troubleshooting.
 
+## Snaps of Project UI
+
+Take a visual journey through the SQLHealthCheck dashboard with snapshots showcasing its user-friendly interface:
+
+![SQLHealthCheck Dashboard](./screen-shots/Screenshot-1.png)
+
+Explore the seamless monitoring experience offered by SQLHealthCheck, empowering you to keep your SQL Server environment in check effortlessly.
+
+
+
 ## Features
 
 - **Real-Time Monitoring:** Continuously track server performance metrics including CPU, memory, and disk usage.
