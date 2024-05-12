@@ -1,0 +1,46 @@
+{
+  "name": "my-electron-app",
+  "version": "1.0.0",
+  "description": "A SQL Server Monitoring Dashboard built with Electron and Flask",
+  "main": "./src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "pip install -r ./flask_app/requirements.txt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "build": {
+    "appId": "com.example.myelectronapp",
+    "productName": "My Electron App",
+    "files": [
+      "public/**/*",
+      "src/**/*",
+      "node_modules/**/*",
+      "flask_app/**/*",
+      "app.py",
+      "requirements.txt",
+      "!**/*.pyc"
+    ],
+    "extraFiles": [
+      {
+        "from": "./flask_app/",
+        "to": "flask_app/",
+        "filter": ["**/*"]
+      }
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    }
+  },
+  "keywords": ["electron", "flask", "sql-server", "monitoring", "dashboard"],
+  "author": "Your Name",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^30.0.3",
+    "electron-builder": "^23.0.3"
+  }
+}

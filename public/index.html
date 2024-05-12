@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Server Monitoring Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header, footer {
+            background-color: #004d99;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .content-box {
+            background-color: white;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: calc(50% - 40px);
+            min-width: 300px;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #003d80;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SQL Server Monitoring Dashboard</h1>
+    </header>
+    <main>
+        <div class="content-box" id="welcome-message">
+            <!-- Greeting message will be displayed here -->
+            Loading greeting message...
+        </div>
+        <div class="content-box" id="server-info">
+            <!-- Server information will be displayed here -->
+            Loading server information...
+        </div>
+    </main>
+    <footer>
+        <p>© 2024 SQL Server Monitoring Dashboard</p>
+    </footer>
+    <script src="../src/renderer.js"></script>
+</body>
+</html>
